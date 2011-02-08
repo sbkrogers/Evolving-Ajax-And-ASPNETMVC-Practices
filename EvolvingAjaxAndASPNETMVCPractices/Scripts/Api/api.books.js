@@ -7,7 +7,7 @@ booksApi.prototype.getAuthors = function (options) {
     }, options);
 
     $.apiCall({
-        url: '/home/getauthors',
+        url: '/api/book/getauthors',
         success: function (result) { config.success(result); }
     });
 }
@@ -19,7 +19,7 @@ booksApi.prototype.getBooksByAuthor = function (options, author) {
     }, options);
 
     $.apiCall({
-        url: encodeURI('/home/getbooksbyauthor/' + author),
+        url: encodeURI('/api/book/getbooksbyauthor/' + author),
         type: 'POST',
         data: { author: author },
         success: function (result) { config.success(result); },
