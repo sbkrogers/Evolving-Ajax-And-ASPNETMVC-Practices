@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using EvolvingAjaxAndASPNETMVCPractices.Code;
+using StructureMap;
 
 namespace EvolvingAjaxAndASPNETMVCPractices
 {
@@ -22,6 +24,11 @@ namespace EvolvingAjaxAndASPNETMVCPractices
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "GetBooksByAuthor",
+                "{controller}/getbooksbyauthor/{author}",
+                new { controller = "Home", action = "GetBooksByAuthor" });
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
@@ -35,6 +42,13 @@ namespace EvolvingAjaxAndASPNETMVCPractices
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory());
+
+            ObjectFactory.Initialize(x =>
+            {
+                x.For<IBookRepository>().Use<BookRepository>();
+            });
         }
     }
 }

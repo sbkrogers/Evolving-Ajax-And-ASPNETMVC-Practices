@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+
+<select id="authors">
+    <option></option>
+</select>
+
+<table width="600">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Subject</th>
+        </tr>
+    </thead>
+    <tbody id="bookTableBody">
+    </tbody>
+</table>
+
+<script id="bookTemplate" type="text/x-jquery-tmpl">
+    <tr>
+        <td>${Author}</td>
+        <td>${Title}</td>
+        <td>${Subject}</td>
+    </tr>
+</script>
+
+<script type="text/javascript" src="/scripts/pages/home.books.js"></script>
